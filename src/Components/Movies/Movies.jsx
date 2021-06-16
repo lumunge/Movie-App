@@ -48,7 +48,7 @@ const Movies = () => {
 	}, [searchValue]);
 
 	const handleAddToFavorites = (movie) => {
-		const newFavorites = [...favorites, movie];
+		const newFavorites = {...favorites, movie};
 
 		saveToLocalStorage(newFavorites);
 		setFavorites(newFavorites);
