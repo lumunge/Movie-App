@@ -25,10 +25,10 @@ const Movies = () => {
 
 	const classes = useStyles();
 
-	// useEffect(() => {
-	// 	const movieFavorites = JSON.parse(localStorage.getItem("movie-list"));
-	// 	setFavorites(movieFavorites);
-	// }, []);
+	useEffect(() => {
+		const movieFavorites = JSON.parse(localStorage.getItem("movie-list"));
+		setFavorites(movieFavorites);
+	}, []);
 
 	useEffect(() => {
 		axios
