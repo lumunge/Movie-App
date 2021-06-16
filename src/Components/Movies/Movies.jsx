@@ -33,7 +33,7 @@ const Movies = () => {
 	useEffect(() => {
 		axios
 			.get(
-				`http://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`
+				`//www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`
 			)
 			.then((res) => {
 				const result = res.data.Search;
