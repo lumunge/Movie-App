@@ -19,11 +19,11 @@ A movie searching application
 
 ### PROJECT SCREENSHOT
 
--   Search Component
+-   Real time onpage searching for movies
 
 ![Screenshot_20210616_173110](https://user-images.githubusercontent.com/58906058/122238368-99363f80-ceaf-11eb-9af6-3f0fc8dcde5e.png)
 
--   Favorites Component
+-   Save your favourite movies
 
 ![Screenshot_20210616_173118](https://user-images.githubusercontent.com/58906058/122238395-9dfaf380-ceaf-11eb-87c9-058266e92f60.png)
 
