@@ -27,10 +27,6 @@ A movie searching application
 
 ![Screenshot_20210616_173118](https://user-images.githubusercontent.com/58906058/122238395-9dfaf380-ceaf-11eb-87c9-058266e92f60.png)
 
--   Social Media
-
-![Screenshot_20210616_173137](https://user-images.githubusercontent.com/58906058/122238402-a05d4d80-ceaf-11eb-9948-d7d5d0d4a047.png)
-
 ### HOSTED @
 
 Coming Soon...
