@@ -14,12 +14,11 @@ import useStyles from "../Movies/styles";
 const Favorites = ({ favorites, removeFromFavorites }) => {
 
 	const classes = useStyles();
-
-
+	
 	return (
 		<Grid container className={classes.movies} spacing={2}>
-			{favorites?.map((movie, index) => (
-				<Grid item>
+			{favorites?.map((movie) => (
+				<Grid item key={movie.imdbID}>
 					<Card className={classes.imagePoster}>
 						<CardActionArea>
 							<CardMedia

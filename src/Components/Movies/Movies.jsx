@@ -39,15 +39,37 @@ const Movies = () => {
 			})
 	}
 
+	const addToFavourites = (movie) => {
+		const prevFavs = [...favorites];
+		// check if movie is in array
+		if(prevFavs.includes(movie)){
+			return null
+		}else{
+			const newFavs = [...favorites, movie];
+			setFavorites(newFavs);
+		}
+	}
+
+	
+
 	useEffect(() => {
 		getMovies();
 	}, [searchValue]);
+
+	
 
 	// const handleRemoveFromFavorites = (movie) => {
 	// 	const newFavoritesList = favorites.filter(
 	// 		(favorite) => favorite.imdbID !== movie.imdbID
 	// 	);
 	// 	setFavorites(newFavoritesList);
+	// };
+
+	// const handleAddToFavorites = (movie) => {
+	// 	const newFavorites = [...favorites, movie];
+
+	// 	saveToLocalStorage(newFavorites);
+	// 	setFavorites(newFavorites);
 	// };
 
 	// const saveToLocalStorage = (items) => {
@@ -98,9 +120,9 @@ const Movies = () => {
 								<CardActions>
 									<IconButton aria-label="add to favorites">
 										<FavoriteIcon
-											// onClick={() =>
-											// 	handleAddToFavorites(movie)
-											// }
+											onClick={() =>
+												addToFavourites(movie)
+											}
 											color="secondary"
 										/>
 									</IconButton>
