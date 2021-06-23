@@ -11,6 +11,7 @@ import {
 	CardActionArea,
 	IconButton,
 	Divider,
+	CircularProgress
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -22,6 +23,7 @@ const Movies = () => {
 	const [movies, setMovies] = useState([]);
 	const [searchValue, setSearch] = useState("");
 	const [favorites, setFavorites] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	const classes = useStyles();
 
@@ -30,11 +32,16 @@ const Movies = () => {
 			.then((res) => {
 				const {Search} = res.data;
 				setMovies(Search);
+				setLoading(!loading);
 			})
 			.catch((error) => {
 				console.log(error)
 			})
 	}
+
+	const saveToLocalStorage = (items) => {
+		localStorage.setItem("movie-list", JSON.stringify(items));
+	};
 
 	const addToFavourites = (movie) => {
 		const prevFavs = [...favorites];
@@ -43,8 +50,10 @@ const Movies = () => {
 			return null
 		}else{
 			const newFavs = [...favorites, movie];
+			saveToLocalStorage(newFavs);
 			setFavorites(newFavs);
 		}
+		
 	}
 
 	const removeFromFavs = (movie) => {
@@ -58,16 +67,11 @@ const Movies = () => {
 
 	useEffect(() => {
 		getMovies();
-	}, [searchValue]);
+	}, [searchValue])
 
+		
 
-	// 	saveToLocalStorage(newFavorites);
-	// 	setFavorites(newFavorites);
-	// };
-
-	// const saveToLocalStorage = (items) => {
-	// 	localStorage.setItem("movie-list", JSON.stringify(items));
-	// };
+	
 
 	return (
 		<div className={classes.main}>
@@ -85,6 +89,7 @@ const Movies = () => {
 			<Typography variant="h3" color="secondary">
 				Movies
 			</Typography>
+		
 			<div className={classes.movieContainer}>
 				<Grid container className={classes.movies} spacing={2}>
 					{movies?.map((movie) => (

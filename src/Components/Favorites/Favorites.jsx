@@ -11,7 +11,8 @@ import {
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import useStyles from "../Movies/styles";
 
-const Favorites = ({ favorites, removeFromFavs }) => {
+const Favorites = ({favorites, removeFromFavs }) => {
+	
 
 	const classes = useStyles();
 
