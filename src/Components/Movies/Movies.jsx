@@ -11,7 +11,6 @@ import {
 	CardActionArea,
 	IconButton,
 	Divider,
-	CircularProgress
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -21,7 +20,6 @@ import Favorites from "../Favorites/Favorites";
 
 const Movies = () => {
 	const [movies, setMovies] = useState([]);
-	const [loading, setLoading] = useState(true);
 	const [searchValue, setSearch] = useState("");
 	const [favorites, setFavorites] = useState([]);
 
@@ -32,7 +30,6 @@ const Movies = () => {
 			.then((res) => {
 				const {Search} = res.data;
 				setMovies(Search);
-				setLoading(!loading);
 			})
 			.catch((error) => {
 				console.log(error)
@@ -50,23 +47,19 @@ const Movies = () => {
 		}
 	}
 
+	const removeFromFavs = (movie) => {
+		const newFavsList = favorites.filter(
+			(favorite) => favorite.imdbID !== movie.imdbID
+		);
+		setFavorites(newFavsList);
+	};
+
 	
 
 	useEffect(() => {
 		getMovies();
 	}, [searchValue]);
 
-	
-
-	// const handleRemoveFromFavorites = (movie) => {
-	// 	const newFavoritesList = favorites.filter(
-	// 		(favorite) => favorite.imdbID !== movie.imdbID
-	// 	);
-	// 	setFavorites(newFavoritesList);
-	// };
-
-	// const handleAddToFavorites = (movie) => {
-	// 	const newFavorites = [...favorites, movie];
 
 	// 	saveToLocalStorage(newFavorites);
 	// 	setFavorites(newFavorites);
@@ -86,13 +79,13 @@ const Movies = () => {
 					autoFocus
 					value={searchValue}
 					onChange={(e) => setSearch(e.target.value)}
+					className={classes.search}
 				/>
 			</div>
 			<Typography variant="h3" color="secondary">
 				Movies
 			</Typography>
 			<div className={classes.movieContainer}>
-				{loading ? (
 				<Grid container className={classes.movies} spacing={2}>
 					{movies?.map((movie) => (
 						<Grid item key={movie.imdbID}>
@@ -142,11 +135,6 @@ const Movies = () => {
 						</Grid>
 					))}
 				</Grid>
-				) : (
-					<div>
-						<CircularProgress color="secondary" />
-					</div>
-				)}
 			</div>
 			<Divider className={classes.divider} />
 			<div className={classes.favorites}>
@@ -155,7 +143,7 @@ const Movies = () => {
 				</Typography>
 				<Favorites
 					favorites={favorites}
-					// removeFromFavorites={handleRemoveFromFavorites}
+					removeFromFavs={removeFromFavs}
 				/>
 			</div>
 		</div>

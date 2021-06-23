@@ -11,6 +11,10 @@ export default makeStyles(() => ({
 	searchBar: {
 		margin: "2rem 0",
 	},
+	search: {
+		background: " #5d6d7e ",
+		padding: "-4rem -2rem",
+	},
 	movies: {
 		width: "100%",
 		display: "flex",

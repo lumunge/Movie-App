@@ -11,10 +11,10 @@ import {
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import useStyles from "../Movies/styles";
 
-const Favorites = ({ favorites, removeFromFavorites }) => {
+const Favorites = ({ favorites, removeFromFavs }) => {
 
 	const classes = useStyles();
-	
+
 	return (
 		<Grid container className={classes.movies} spacing={2}>
 			{favorites?.map((movie) => (
@@ -37,7 +37,7 @@ const Favorites = ({ favorites, removeFromFavorites }) => {
 						<CardActions>
 							<IconButton>
 								<DeleteOutlineIcon
-									onClick={() => removeFromFavorites(movie)}
+									onClick={() => removeFromFavs(movie)}
 									className={classes.delete}
 								/>
 							</IconButton>
