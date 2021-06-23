@@ -11,6 +11,7 @@ import {
 	CardActionArea,
 	IconButton,
 	Divider,
+	CircularProgress
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -20,50 +21,38 @@ import Favorites from "../Favorites/Favorites";
 
 const Movies = () => {
 	const [movies, setMovies] = useState([]);
+	const [loading, setLoading] = useState(true);
 	const [searchValue, setSearch] = useState("");
 	const [favorites, setFavorites] = useState([]);
 
 	const classes = useStyles();
 
-	useEffect(() => {
-		const movieFavorites = JSON.parse(localStorage.getItem("movie-list"));
-		setFavorites(movieFavorites);
-	}, []);
-
-	useEffect(() => {
-		axios
-			.get(
-				`//www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`
-			)
+	const getMovies  = () => {
+		axios.get(`http://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`)
 			.then((res) => {
-				const result = res.data.Search;
-				if (result) {
-					setMovies(result);
-				}
-				console.log(result);
+				const {Search} = res.data;
+				setMovies(Search);
+				setLoading(!loading);
 			})
 			.catch((error) => {
-				console.log(error);
-			});
+				console.log(error)
+			})
+	}
+
+	useEffect(() => {
+		getMovies();
 	}, [searchValue]);
 
-	const handleAddToFavorites = (movie) => {
-		const newFavorites = [...favorites, movie];
+	// const handleRemoveFromFavorites = (movie) => {
+	// 	const newFavoritesList = favorites.filter(
+	// 		(favorite) => favorite.imdbID !== movie.imdbID
+	// 	);
+	// 	setFavorites(newFavoritesList);
+	// };
 
-		saveToLocalStorage(newFavorites);
-		setFavorites(newFavorites);
-	};
-
-	const handleRemoveFromFavorites = (movie) => {
-		const newFavoritesList = favorites.filter(
-			(favorite) => favorite.imdbID !== movie.imdbID
-		);
-		setFavorites(newFavoritesList);
-	};
-
-	const saveToLocalStorage = (items) => {
-		localStorage.setItem("movie-list", JSON.stringify(items));
-	};
+	// const saveToLocalStorage = (items) => {
+	// 	localStorage.setItem("movie-list", JSON.stringify(items));
+	// };
 
 	return (
 		<div className={classes.main}>
@@ -81,9 +70,10 @@ const Movies = () => {
 				Movies
 			</Typography>
 			<div className={classes.movieContainer}>
+				{loading ? (
 				<Grid container className={classes.movies} spacing={2}>
-					{movies.map((movie, index) => (
-						<Grid item>
+					{movies?.map((movie) => (
+						<Grid item key={movie.imdbID}>
 							<Card className={classes.imagePoster}>
 								<CardActionArea>
 									<CardMedia
@@ -108,9 +98,9 @@ const Movies = () => {
 								<CardActions>
 									<IconButton aria-label="add to favorites">
 										<FavoriteIcon
-											onClick={() =>
-												handleAddToFavorites(movie)
-											}
+											// onClick={() =>
+											// 	handleAddToFavorites(movie)
+											// }
 											color="secondary"
 										/>
 									</IconButton>
@@ -130,6 +120,11 @@ const Movies = () => {
 						</Grid>
 					))}
 				</Grid>
+				) : (
+					<div>
+						<CircularProgress color="secondary" />
+					</div>
+				)}
 			</div>
 			<Divider className={classes.divider} />
 			<div className={classes.favorites}>
@@ -138,7 +133,7 @@ const Movies = () => {
 				</Typography>
 				<Favorites
 					favorites={favorites}
-					removeFromFavorites={handleRemoveFromFavorites}
+					// removeFromFavorites={handleRemoveFromFavorites}
 				/>
 			</div>
 		</div>
@@ -146,3 +141,5 @@ const Movies = () => {
 };
 
 export default Movies;
+
+
