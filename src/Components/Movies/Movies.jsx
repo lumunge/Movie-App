@@ -11,7 +11,6 @@ import {
 	CardActionArea,
 	IconButton,
 	Divider,
-	CircularProgress
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -89,7 +88,10 @@ const Movies = () => {
 			<Typography variant="h3" color="secondary">
 				Movies
 			</Typography>
-		
+			<>
+			{!movies ? (
+				<h1>Search Movies...</h1>
+			) : (
 			<div className={classes.movieContainer}>
 				<Grid container className={classes.movies} spacing={2}>
 					{movies?.map((movie) => (
@@ -141,6 +143,8 @@ const Movies = () => {
 					))}
 				</Grid>
 			</div>
+			)}
+			</>
 			<Divider className={classes.divider} />
 			<div className={classes.favorites}>
 				<Typography variant="h3" color="secondary">
