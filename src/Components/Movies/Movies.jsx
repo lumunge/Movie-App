@@ -27,7 +27,7 @@ const Movies = () => {
 	const classes = useStyles();
 
 	const getMovies  = () => {
-		axios.get(`http://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`)
+		axios.get(`http://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`, {searchValue})
 			.then((res) => {
 				const {Search} = res.data;
 				setMovies(Search);
@@ -66,6 +66,7 @@ const Movies = () => {
 
 	useEffect(() => {
 		getMovies();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchValue])
 
 		
