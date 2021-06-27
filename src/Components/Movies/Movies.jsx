@@ -24,14 +24,24 @@ const Movies = () => {
 	const [favorites, setFavorites] = useState([]);
 	const [loading, setLoading] = useState(true);
 
+	// styles
 	const classes = useStyles();
 
+	let cancelToken;
+
+	if(typeof cancelToken != typeof undefined){
+		cancelToken.cancel('Cancelling');
+	}
+
+	cancelToken = axios.CancelToken.source();
+
 	const getMovies  = () => {
-		axios.get(`http://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`, {searchValue})
+		axios.get(`http://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`, {cancelToken: cancelToken.token})
 			.then((res) => {
 				const {Search} = res.data;
 				setMovies(Search);
 				setLoading(!loading);
+				console.table(Search);
 			})
 			.catch((error) => {
 				console.log(error)
