@@ -29,7 +29,7 @@ A movie searching application
 
 ### HOSTED @
 
-Coming Soon...
+[Movie-App](https://gallant-albattani-ce1704.netlify.app/)
 
 ### SETUP
 
