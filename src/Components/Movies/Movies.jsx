@@ -41,7 +41,6 @@ const Movies = () => {
 				const {Search} = res.data;
 				setMovies(Search);
 				setLoading(!loading);
-				console.table(Search);
 			})
 			.catch((error) => {
 				console.log(error)
