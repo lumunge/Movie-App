@@ -4,6 +4,7 @@ import "./index.css";
 const App = () => {
 	return (
 		<>
+			<h1>Free Movies Here</h1>
 			<Movies />;
 		</>
 	);
