@@ -36,7 +36,7 @@ const Movies = () => {
 	cancelToken = axios.CancelToken.source();
 
 	const getMovies  = () => {
-		axios.get(`http://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`, {cancelToken: cancelToken.token})
+		axios.get(`https://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`, {cancelToken: cancelToken.token})
 			.then((res) => {
 				const {Search} = res.data;
 				setMovies(Search);
