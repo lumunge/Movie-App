@@ -41,4 +41,7 @@ export default makeStyles(() => ({
 	delete: {
 		color: "#e74c3c",
 	},
+	start: {
+		color: "#fff",
+	},
 }));

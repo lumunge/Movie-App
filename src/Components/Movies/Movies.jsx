@@ -11,6 +11,7 @@ import {
 	CardActionArea,
 	IconButton,
 	Divider,
+	CircularProgress
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -100,7 +101,9 @@ const Movies = () => {
 			</Typography>
 			<>
 			{!movies ? (
-				<h1>...</h1>
+				<>
+				<h4 className={classes.start}>Search...</h4><CircularProgress disableShrink />
+				</>
 			) : (
 			<div className={classes.movieContainer}>
 				<Grid container className={classes.movies} spacing={2}>
