@@ -100,7 +100,7 @@ const Movies = () => {
 			</Typography>
 			<>
 			{!movies ? (
-				<h1>Search Movies...</h1>
+				<h1>...</h1>
 			) : (
 			<div className={classes.movieContainer}>
 				<Grid container className={classes.movies} spacing={2}>
