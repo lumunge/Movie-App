@@ -33,7 +33,7 @@ A movie searching application
 
 ### SETUP
 
-    * git clone https://github.com/lumungep12/Movie-App.git
+    * git clone https://github.com/lumunge/Movie-App.git
     * npm i
     * Register for an api key @ omdb.com
     * npm start
