@@ -9,6 +9,7 @@ A movie searching application
     * Reactjs
     * Material UI
     * react-share
+    * CSS3
 
 ### FEATURES
 
