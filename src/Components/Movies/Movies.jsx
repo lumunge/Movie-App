@@ -142,7 +142,7 @@ const Movies = () => {
 											<FacebookShareButton
 												url="https://gallant-albattani-ce1704.netlify.app/ "
 												quote={movie.Title}
-												hashtag="#movierecommendadtion"
+												hashtag="#movierecommendation"
 											>
 												<FacebookIcon
 													className={classes.facebook}
