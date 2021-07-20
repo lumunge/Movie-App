@@ -105,7 +105,6 @@ const Movies = () => {
 				<h4 className={classes.start}>Search...</h4><CircularProgress disableShrink />
 				</>
 			) : (
-			<div className={classes.movieContainer}>
 				<Grid container className={classes.movies} spacing={2}>
 					{movies?.map((movie) => (
 						<Grid item key={movie.imdbID}>
@@ -114,7 +113,7 @@ const Movies = () => {
 									<CardMedia
 										component="img"
 										alt={movie.Title}
-										height="300"
+										className={classes.img}
 										image={movie.Poster}
 										title={movie.Title}
 									/>
@@ -155,7 +154,6 @@ const Movies = () => {
 						</Grid>
 					))}
 				</Grid>
-			</div>
 			)}
 			</>
 			<Divider className={classes.divider} />

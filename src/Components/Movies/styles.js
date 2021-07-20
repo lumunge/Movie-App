@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
 	main: {
 		display: "flex",
 		flexDirection: "column",
@@ -20,8 +20,18 @@ export default makeStyles(() => ({
 		display: "flex",
 		justifyContent: "center",
 	},
+	img: {
+		height: 450,
+		[theme.breakpoints.down("xs")]: {
+			height: 200,
+		},
+	},
 	imagePoster: {
 		width: 345,
+		[theme.breakpoints.down("xs")]: {
+			width: 200,
+			height: 350,
+		},
 	},
 	favorites: {
 		padding: "2rem 0",
