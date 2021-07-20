@@ -51,7 +51,4 @@ export default makeStyles((theme) => ({
 	delete: {
 		color: "#e74c3c",
 	},
-	start: {
-		color: "#fff",
-	},
 }));

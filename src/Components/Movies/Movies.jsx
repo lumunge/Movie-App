@@ -25,8 +25,6 @@ const Movies = () => {
 	const [favorites, setFavorites] = useState([]);
 	const [loading, setLoading] = useState(true);
 
-	console.log(searchValue);
-
 	// styles
 	const classes = useStyles();
 
@@ -100,10 +98,7 @@ const Movies = () => {
 			</Typography>
 			<>
 				{!movies ? (
-					<>
-						<h4 className={classes.start}>Search...</h4>
-						<CircularProgress disableShrink />
-					</>
+					<CircularProgress disableShrink />
 				) : (
 					<Grid container className={classes.movies} spacing={2}>
 						{movies?.map((movie) => (
