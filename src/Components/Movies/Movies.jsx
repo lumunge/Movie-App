@@ -11,7 +11,7 @@ import {
 	CardActionArea,
 	IconButton,
 	Divider,
-	CircularProgress
+	CircularProgress,
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -32,23 +32,27 @@ const Movies = () => {
 
 	let cancelToken;
 
-	if(typeof cancelToken != typeof undefined){
-		cancelToken.cancel('Cancelling');
+	if (typeof cancelToken != typeof undefined) {
+		cancelToken.cancel("Cancelling");
 	}
 
 	cancelToken = axios.CancelToken.source();
 
-	const getMovies  = () => {
-		axios.get(`https://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`, {cancelToken: cancelToken.token})
+	const getMovies = () => {
+		axios
+			.get(
+				`https://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`,
+				{ cancelToken: cancelToken.token }
+			)
 			.then((res) => {
-				const {Search} = res.data;
+				const { Search } = res.data;
 				setMovies(Search);
 				setLoading(!loading);
 			})
 			.catch((error) => {
-				console.log(error)
-			})
-	}
+				console.log(error);
+			});
+	};
 
 	const saveToLocalStorage = (items) => {
 		localStorage.setItem("movie-list", JSON.stringify(items));
@@ -57,15 +61,14 @@ const Movies = () => {
 	const addToFavourites = (movie) => {
 		const prevFavs = [...favorites];
 		// check if movie is in array
-		if(prevFavs.includes(movie)){
-			return null
-		}else{
+		if (prevFavs.includes(movie)) {
+			return null;
+		} else {
 			const newFavs = [...favorites, movie];
 			saveToLocalStorage(newFavs);
 			setFavorites(newFavs);
 		}
-		
-	}
+	};
 
 	const removeFromFavs = (movie) => {
 		const newFavsList = favorites.filter(
@@ -74,16 +77,10 @@ const Movies = () => {
 		setFavorites(newFavsList);
 	};
 
-	
-
 	useEffect(() => {
 		getMovies();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [searchValue])
-
-		
-
-	
+	}, [searchValue]);
 
 	return (
 		<div className={classes.main}>
@@ -102,61 +99,62 @@ const Movies = () => {
 				Movies
 			</Typography>
 			<>
-			{!movies ? (
-				<>
-				<h4 className={classes.start}>Search...</h4><CircularProgress disableShrink />
-				</>
-			) : (
-				<Grid container className={classes.movies} spacing={2}>
-					{movies?.map((movie) => (
-						<Grid item key={movie.imdbID}>
-							<Card className={classes.imagePoster}>
-								<CardActionArea>
-									<CardMedia
-										component="img"
-										alt={movie.Title}
-										className={classes.img}
-										image={movie.Poster}
-										title={movie.Title}
-									/>
-									<CardContent>
-										<Typography
-											color="textSecondary"
-											variant="subtitle2"
-										>
-											{movie.Title}
-										</Typography>
-										<Typography variant="caption">
-											{movie.Type}, {movie.Year}
-										</Typography>
-									</CardContent>
-								</CardActionArea>
-								<CardActions>
-									<IconButton aria-label="add to favorites">
-										<FavoriteIcon
-											onClick={() =>
-												addToFavourites(movie)
-											}
-											color="secondary"
+				{!movies ? (
+					<>
+						<h4 className={classes.start}>Search...</h4>
+						<CircularProgress disableShrink />
+					</>
+				) : (
+					<Grid container className={classes.movies} spacing={2}>
+						{movies?.map((movie) => (
+							<Grid item key={movie.imdbID}>
+								<Card className={classes.imagePoster}>
+									<CardActionArea>
+										<CardMedia
+											component="img"
+											alt={movie.Title}
+											className={classes.img}
+											image={movie.Poster}
+											title={movie.Title}
 										/>
-									</IconButton>
-									<IconButton>
-										<FacebookShareButton
-											url="https://gallant-albattani-ce1704.netlify.app/ "
-											quote={movie.Title}
-											hashtag="#movierecommendadtion"
-										>
-											<FacebookIcon
-                                                className={classes.facebook}
-                                            />{" "}
-										</FacebookShareButton>
-									</IconButton>
-								</CardActions>
-							</Card>
-						</Grid>
-					))}
-				</Grid>
-			)}
+										<CardContent>
+											<Typography
+												color="textSecondary"
+												variant="subtitle2"
+											>
+												{movie.Title}
+											</Typography>
+											<Typography variant="caption">
+												{movie.Type}, {movie.Year}
+											</Typography>
+										</CardContent>
+									</CardActionArea>
+									<CardActions>
+										<IconButton aria-label="add to favorites">
+											<FavoriteIcon
+												onClick={() =>
+													addToFavourites(movie)
+												}
+												color="secondary"
+											/>
+										</IconButton>
+										<IconButton>
+											<FacebookShareButton
+												url="https://gallant-albattani-ce1704.netlify.app/ "
+												quote={movie.Title}
+												hashtag="#movierecommendadtion"
+											>
+												<FacebookIcon
+													className={classes.facebook}
+												/>{" "}
+											</FacebookShareButton>
+										</IconButton>
+									</CardActions>
+								</Card>
+							</Grid>
+						))}
+					</Grid>
+				)}
 			</>
 			<Divider className={classes.divider} />
 			<div className={classes.favorites}>
@@ -173,5 +171,3 @@ const Movies = () => {
 };
 
 export default Movies;
-
-
