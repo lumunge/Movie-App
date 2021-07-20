@@ -25,7 +25,7 @@ const Favorites = ({favorites, removeFromFavs }) => {
 							<CardMedia
 								component="img"
 								alt={movie.Title}
-								height="300"
+								className={classes.img}
 								image={movie.Poster}
 								title={movie.Title}
 							/>

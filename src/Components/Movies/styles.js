@@ -23,14 +23,14 @@ export default makeStyles((theme) => ({
 	img: {
 		height: 450,
 		[theme.breakpoints.down("xs")]: {
-			height: 200,
+			height: 300,
 		},
 	},
 	imagePoster: {
 		width: 345,
 		[theme.breakpoints.down("xs")]: {
-			width: 200,
-			height: 350,
+			width: 250,
+			height: 450,
 		},
 	},
 	favorites: {
