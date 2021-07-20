@@ -25,6 +25,8 @@ const Movies = () => {
 	const [favorites, setFavorites] = useState([]);
 	const [loading, setLoading] = useState(true);
 
+	console.log(searchValue);
+
 	// styles
 	const classes = useStyles();
 
@@ -141,8 +143,8 @@ const Movies = () => {
 									<IconButton>
 										<FacebookShareButton
 											url="https://gallant-albattani-ce1704.netlify.app/ "
-											quote={"Check out this movie, am sure you will love it. Welcome"}
-											hashtag="#recommended #movies #latest"
+											quote={movie.Title}
+											hashtag="#movierecommendadtion"
 										>
 											<FacebookIcon
                                                 className={classes.facebook}
